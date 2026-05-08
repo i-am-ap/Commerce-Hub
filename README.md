@@ -227,7 +227,9 @@ Using Socket.io:
 <img width="1895" height="906" alt="image" src="https://github.com/user-attachments/assets/449fcfd9-2d78-4dc1-8c91-4360c3ea1dc9" />&nbsp;
 <img width="1892" height="908" alt="image" src="https://github.com/user-attachments/assets/fe61451a-3261-4d54-bc69-8665c5998fbc" />&nbsp;
 <img width="1917" height="911" alt="image" src="https://github.com/user-attachments/assets/fccc5dd5-7c87-48b4-89cb-431309c49a27" />&nbsp;
-<img width="1842" height="911" alt="image" src="https://github.com/user-attachments/assets/9abe2c9d-9d11-40e2-b80f-2fb855986d86" />
+<img width="1842" height="911" alt="image" src="https://github.com/user-attachments/assets/9abe2c9d-9d11-40e2-b80f-2fb855986d86" />&nbsp;
+<img width="1918" height="910" alt="image" src="https://github.com/user-attachments/assets/7f587765-5212-4fee-a534-d17b88374a11" />
+
 
 
 ---
