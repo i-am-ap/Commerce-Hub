@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 222 30% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 14%;
+    --primary: 18 87% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 155 42% 91%;
+    --secondary-foreground: 155 37% 22%;
+    --muted: 40 27% 92%;
+    --muted-foreground: 216 16% 40%;
+    --accent: 46 95% 86%;
+    --accent-foreground: 30 48% 20%;
+    --border: 30 18% 85%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply min-h-screen bg-background font-sans text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(245, 158, 11, 0.12), transparent 26%),
+      radial-gradient(circle at 85% 10%, rgba(16, 185, 129, 0.08), transparent 25%),
+      linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.95));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-panel {
+    @apply rounded-3xl border border-white/70 bg-white/80 shadow-soft backdrop-blur;
+  }
+}
+

@@ -1,0 +1,51 @@
+name: Commerce Hub CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install workspace dependencies
+        run: |
+          npm install --workspace server
+          npm install --workspace client
+
+      - name: Build client
+        run: npm run build --workspace client
+
+      - name: Server syntax smoke check
+        run: node --check src/server.js
+        working-directory: server
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /var/www/commerce-hub
+            git pull origin main
+            docker compose up -d --build
+
