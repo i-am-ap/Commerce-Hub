@@ -29,10 +29,10 @@ export function AppShell() {
         <div className="container-shell flex flex-wrap items-center justify-between gap-4 py-4">
           <Link to="/" className="flex items-center gap-3">
             <div className="rounded-2xl bg-primary px-3 py-2 font-display text-lg font-bold text-white">
-              CH
+              AP
             </div>
             <div>
-              <div className="font-display text-lg font-semibold">Commerce Hub</div>
+              <div className="font-display text-lg font-semibold">Aryan Hub</div>
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Amazon-style storefront
               </div>
@@ -111,6 +111,9 @@ export function AppShell() {
         <div className="container-shell flex flex-col gap-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>Built with React, Express, MongoDB, Redis, Stripe/Razorpay, Socket.io, Docker, and Nginx.</p>
           <p>Multi-role commerce platform for customers, sellers, and admins.</p>
+        </div>
+        <div className="container-shell py-4 text-center text-sm text-muted-foreground">
+          <p>Developed and Designed with ❤️ by Aryan Palaspagar</p>
         </div>
       </footer>
     </div>
