@@ -27,6 +27,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan(env.isProduction ? "combined" : "dev"));
 
+app.get("/", (_req, res) => {
+  res.json({
+    success: true,
+    message: "Commerce Hub Backend API Running 🚀",
+  });
+});
+
 app.get("/health", (_request, response) => {
   response.json({
     success: true,
