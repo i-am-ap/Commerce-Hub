@@ -65,9 +65,25 @@ export function LoginPage() {
                     }
                   );
 
-                  console.log(response.data);
+                  // console.log(response.data);
+                  // navigate("/dashboard");
+                  const user = response.data.user;
 
-                  navigate("/dashboard");
+                  // save auth state
+                  localStorage.setItem("user", JSON.stringify(user));
+
+                  // redirect based on role
+                  if (user.role === "seller") {
+                    navigate("/seller/dashboard");
+                  } else if (user.role === "admin") {
+                    navigate("/admin/dashboard");
+                  } else {
+                    navigate("/dashboard");
+                  }
+
+                  // refresh frontend auth state
+                  window.location.reload();
+
                 } catch (error) {
                   console.error(error);
                 }
