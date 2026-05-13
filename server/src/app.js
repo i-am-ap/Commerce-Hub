@@ -45,7 +45,12 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(helmet());
+// app.use(helmet());
+app.use(
+  helmet({
+    crossOriginOpenerPolicy: false,
+  })
+);
 app.use(compression());
 app.use(apiRateLimiter);
 app.use(express.json({ limit: "2mb" }));
