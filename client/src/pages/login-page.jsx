@@ -56,7 +56,7 @@ export function LoginPage() {
               onSuccess={async (credentialResponse) => {
                 try {
                   const response = await axios.post(
-                    "http://localhost:5000/api/auth/google",
+                    `${import.meta.env.VITE_API_BASE_URL}/auth/google`,
                     {
                       credential: credentialResponse.credential,
                     },
