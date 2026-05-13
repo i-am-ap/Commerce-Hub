@@ -1,10 +1,17 @@
 import { env } from "../config/env.js";
 
+// const baseCookieOptions = {
+//   httpOnly: true,
+//   sameSite: "lax",
+//   secure: env.isProduction,
+//   domain: env.isProduction ? env.cookieDomain : undefined,
+//   path: "/",
+// };
+
 const baseCookieOptions = {
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: env.isProduction ? "none" : "lax",
   secure: env.isProduction,
-  domain: env.isProduction ? env.cookieDomain : undefined,
   path: "/",
 };
 
