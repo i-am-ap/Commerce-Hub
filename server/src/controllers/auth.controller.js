@@ -21,7 +21,8 @@ const googleClient = env.googleClientId ? new OAuth2Client(env.googleClientId) :
 const serializeUser = (user) => user.toJSON();
 
 export const register = asyncHandler(async (request, response) => {
-  const { name, email, password, role = ROLES.CUSTOMER } = request.body;
+  const { name, password, role = ROLES.CUSTOMER } = request.body;
+  const email = request.body.email.toLowerCase();
 
   if (!name || !email || !password) {
     throw new ApiError(400, "Name, email, and password are required.");
@@ -58,13 +59,16 @@ export const register = asyncHandler(async (request, response) => {
 });
 
 export const login = asyncHandler(async (request, response) => {
-  const { email, password } = request.body;
+  const { password } = request.body;
+  const email = request.body.email.toLowerCase();
 
   if (!email || !password) {
     throw new ApiError(400, "Email and password are required.");
   }
 
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({
+  email,
+  }).select("+password");
   if (!user || !(await user.comparePassword(password))) {
     throw new ApiError(401, "Invalid email or password.");
   }
@@ -100,12 +104,27 @@ export const googleLogin = asyncHandler(async (request, response) => {
     throw new ApiError(400, "Unable to verify Google account.");
   }
 
-  let user = await User.findOne({ email: payload.email });
+  const email = payload.email.toLowerCase();
+
+  let user = await User.findOne({ email });
+
+  if (user && !user.googleId) {
+  user.googleId = payload.sub;
+
+  if (!user.avatar?.url) {
+    user.avatar = {
+      url: payload.picture || "",
+      publicId: "",
+    };
+  }
+
+  await user.save();
+  }
 
   if (!user) {
     user = await User.create({
-      name: payload.name || payload.email.split("@")[0],
-      email: payload.email,
+      name: payload.name || email.split("@")[0],
+      email,
       googleId: payload.sub,
       avatar: {
         url: payload.picture || "",
